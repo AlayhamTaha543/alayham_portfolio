@@ -1,7 +1,13 @@
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
-import { ExternalLink, Github, Mail, Phone, MapPin } from "lucide-react";
-import { useState } from "react";
+import { ExternalLink, Github, Mail, Phone, MapPin, Linkedin } from "lucide-react";
+import { useState, Suspense } from "react";
+import { motion } from "framer-motion";
+import ProgressiveImage from "@/components/ProgressiveImage";
+import { ProjectGallerySkeleton } from "@/components/ProjectSkeleton";
+import { projects } from "@/data/projects";
+import ProjectGallery from "@/components/ProjectGallery";
+import Certifications from "@/components/Certifications";
 
 /**
  * Modern Technical Minimalism Design System
@@ -10,66 +16,12 @@ import { useState } from "react";
  * Layout: Asymmetric grid with staggered sections
  */
 
-interface Project {
-  id: string;
-  title: string;
-  description: string;
-  technologies: string[];
-  highlights: string[];
-  github: string;
-  image: string;
-}
-
-const projects: Project[] = [
-  {
-    id: "masjedi",
-    title: "Masjedi",
-    description: "A robust backend system for mosque management and community engagement built with Spring Boot and MySQL.",
-    technologies: ["Java", "Spring Boot", "MySQL", "RESTful APIs", "Spring Security"],
-    highlights: [
-      "Implemented RESTful APIs for seamless data communication",
-      "Integrated MySQL with optimized queries for efficient data retrieval",
-      "Utilized Spring Security for authentication and authorization",
-      "Designed scalable backend architecture",
-    ],
-    github: "https://github.com/AlayhamTaha543/Masjedi",
-    image: "/images/project-hero-spring.jpg",
-  },
-  {
-    id: "tourism",
-    title: "Tourism Management",
-    description: "Comprehensive tourism management system with Laravel framework featuring role-based access control and advanced booking functionality.",
-    technologies: ["PHP", "Laravel", "PostgreSQL", "RESTful APIs", "Eloquent ORM"],
-    highlights: [
-      "Built comprehensive tourism management system with Laravel",
-      "Designed RESTful APIs for tours, bookings, and user management",
-      "Implemented role-based access control for admin and user roles",
-      "Optimized database schema using Eloquent ORM",
-    ],
-    github: "https://github.com/AlayhamTaha543/Tourism-Management",
-    image: "/images/project-hero-laravel.jpg",
-  },
-  {
-    id: "satellite",
-    title: "Satellite Simulation",
-    description: "Interactive 3D satellite simulation visualizing orbital mechanics with real-time data updates and user interactions.",
-    technologies: ["JavaScript", "Three.js", "WebGL", "Real-time Data", "3D Visualization"],
-    highlights: [
-      "Created interactive 3D satellite simulation using Three.js",
-      "Integrated JavaScript modules for real-time data updates",
-      "Demonstrated ability to merge frontend creativity with backend data processing",
-      "Optimized 3D rendering performance",
-    ],
-    github: "https://github.com/AlayhamTaha543/Satellite-simulation",
-    image: "/images/hero-bg-1.jpg",
-  },
-];
 
 export default function Home() {
   const [expandedProject, setExpandedProject] = useState<string | null>(null);
 
   return (
-    <div className="min-h-screen bg-background text-foreground">
+    <div className="min-h-screen bg-background text-foreground overflow-x-hidden">
       {/* Navigation Header */}
       <header className="sticky top-0 z-50 border-b border-border bg-background/80 backdrop-blur-sm">
         <nav className="container py-4 flex items-center justify-between">
@@ -96,10 +48,12 @@ export default function Home() {
       {/* Hero Section */}
       <section className="relative overflow-hidden">
         <div className="absolute inset-0 opacity-40">
-          <img
-            src="/images/hero-bg-1.jpg"
+          <ProgressiveImage
+            src="/images/hero-bg-1.webp"
+            placeholder="/images/projects/satellite-placeholder.webp"
             alt="Hero background"
             className="w-full h-full object-cover"
+            aspectRatio="16/9"
           />
           <div className="absolute inset-0 bg-gradient-to-r from-background via-background/80 to-transparent" />
         </div>
@@ -145,6 +99,28 @@ export default function Home() {
                 <div className="text-xs text-muted-foreground">Languages</div>
               </div>
             </div>
+
+            {/* Social Links */}
+            <div className="flex gap-4 pt-6">
+              <a
+                href="https://www.linkedin.com/in/alayham-taha-8bb369277/"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center gap-2 px-4 py-2 bg-accent/10 hover:bg-accent/20 border border-accent/30 rounded-lg text-accent font-medium transition-all duration-300 hover:scale-105"
+              >
+                <Linkedin size={18} />
+                LinkedIn
+              </a>
+              <a
+                href="https://github.com/AlayhamTaha543"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center gap-2 px-4 py-2 bg-accent/10 hover:bg-accent/20 border border-accent/30 rounded-lg text-accent font-medium transition-all duration-300 hover:scale-105"
+              >
+                <Github size={18} />
+                GitHub
+              </a>
+            </div>
           </div>
 
           {/* Right: Visual Element */}
@@ -167,92 +143,14 @@ export default function Home() {
             </p>
           </div>
 
-          <div className="space-y-8">
-            {projects.map((project, index) => (
-              <div
-                key={project.id}
-                className={`group cursor-pointer transition-all duration-300 ${
-                  index % 2 === 0 ? "md:flex-row" : "md:flex-row-reverse"
-                }`}
-                onClick={() =>
-                  setExpandedProject(
-                    expandedProject === project.id ? null : project.id
-                  )
-                }
-              >
-                <Card className="bg-card border-border hover:border-accent/50 overflow-hidden transition-all duration-300">
-                  <div className="grid grid-cols-1 md:grid-cols-2 gap-0">
-                    {/* Image */}
-                    <div className="relative h-64 md:h-auto overflow-hidden">
-                      <img
-                        src={project.image}
-                        alt={project.title}
-                        className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
-                      />
-                      <div className="absolute inset-0 bg-gradient-to-r from-background/40 to-transparent" />
-                    </div>
-
-                    {/* Content */}
-                    <div className="p-8 flex flex-col justify-between">
-                      <div className="space-y-4">
-                        <h3 className="text-2xl font-bold">{project.title}</h3>
-                        <p className="text-muted-foreground">{project.description}</p>
-
-                        {/* Technologies */}
-                        <div className="flex flex-wrap gap-2">
-                          {project.technologies.map((tech) => (
-                            <span
-                              key={tech}
-                              className="px-3 py-1 bg-accent/10 border border-accent/30 rounded text-xs font-medium text-accent"
-                            >
-                              {tech}
-                            </span>
-                          ))}
-                        </div>
-
-                        {/* Highlights - Expanded */}
-                        {expandedProject === project.id && (
-                          <div className="pt-4 space-y-2 border-t border-border/50">
-                            {project.highlights.map((highlight, idx) => (
-                              <div key={idx} className="flex gap-3">
-                                <div className="w-1.5 h-1.5 rounded-full bg-accent mt-2 flex-shrink-0" />
-                                <p className="text-sm text-muted-foreground">
-                                  {highlight}
-                                </p>
-                              </div>
-                            ))}
-                          </div>
-                        )}
-                      </div>
-
-                      {/* Actions */}
-                      <div className="flex gap-3 pt-6">
-                        <a
-                          href={project.github}
-                          target="_blank"
-                          rel="noopener noreferrer"
-                          className="inline-flex items-center gap-2 px-4 py-2 bg-accent/10 hover:bg-accent/20 border border-accent/30 rounded text-accent transition-colors"
-                          onClick={(e) => e.stopPropagation()}
-                        >
-                          <Github size={16} />
-                          <span className="text-sm font-medium">View Code</span>
-                        </a>
-                        <button
-                          className="inline-flex items-center gap-2 px-4 py-2 text-accent text-sm font-medium hover:text-accent/80 transition-colors"
-                          onClick={(e) => e.stopPropagation()}
-                        >
-                          {expandedProject === project.id ? "Show Less" : "Learn More"}
-                          <ExternalLink size={16} />
-                        </button>
-                      </div>
-                    </div>
-                  </div>
-                </Card>
-              </div>
-            ))}
-          </div>
+          <Suspense fallback={<ProjectGallerySkeleton />}>
+            <ProjectGallery expandedProject={expandedProject} setExpandedProject={setExpandedProject} />
+          </Suspense>
         </div>
       </section>
+
+      {/* Certifications Section */}
+      <Certifications />
 
       {/* Skills Section */}
       <section id="skills" className="py-20 md:py-28 border-t border-border bg-card/50">
@@ -313,15 +211,15 @@ export default function Home() {
           {/* Languages */}
           <div className="mt-12 pt-12 border-t border-border">
             <h3 className="text-xl font-bold mb-6">Languages</h3>
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-4 max-w-2xl">
               {[
                 { lang: "Arabic", level: "Native" },
                 { lang: "English", level: "Proficient" },
                 { lang: "French", level: "Advanced" },
               ].map((item) => (
-                <div key={item.lang} className="flex justify-between items-center">
-                  <span className="text-muted-foreground">{item.lang}</span>
-                  <span className="text-accent font-semibold">{item.level}</span>
+                <div key={item.lang} className="flex items-baseline gap-2">
+                  <span className="font-medium text-foreground">{item.lang}</span>
+                  <span className="text-sm text-cyan-400">{item.level}</span>
                 </div>
               ))}
             </div>
@@ -335,14 +233,14 @@ export default function Home() {
           <h2 className="text-4xl md:text-5xl font-bold mb-12">Education</h2>
 
           <Card className="bg-card border-border p-8">
-            <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-4">
-              <div>
+            <div className="flex flex-col md:flex-row md:items-start md:justify-between gap-4">
+              <div className="flex-1">
                 <h3 className="text-2xl font-bold">Damascus University</h3>
                 <p className="text-muted-foreground mt-2">
                   Fourth Year, AI Section
                 </p>
               </div>
-              <div className="text-accent font-semibold">Damascus, Syria</div>
+              <div className="text-accent font-semibold md:text-right mt-2 md:mt-0">Damascus, Syria</div>
             </div>
 
             <div className="mt-6 pt-6 border-t border-border">
@@ -408,7 +306,7 @@ export default function Home() {
               </div>
             </div>
 
-            <div className="pt-8">
+            <div className="pt-8 flex gap-4 justify-center">
               <a
                 href="https://github.com/AlayhamTaha543"
                 target="_blank"
@@ -418,6 +316,15 @@ export default function Home() {
                 <Github size={20} />
                 Follow on GitHub
               </a>
+              <a
+                href="https://www.linkedin.com/in/alayham-taha-8bb369277/"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center gap-2 px-6 py-3 bg-accent hover:bg-accent/90 text-accent-foreground rounded-lg font-semibold transition-all duration-300"
+              >
+                <Linkedin size={20} />
+                Connect on LinkedIn
+              </a>
             </div>
           </div>
         </div>
@@ -426,8 +333,26 @@ export default function Home() {
       {/* Footer */}
       <footer className="border-t border-border py-8 bg-background/50">
         <div className="container flex flex-col md:flex-row items-center justify-between gap-4 text-sm text-muted-foreground">
-          <p>© 2024 Alayham Taha. All rights reserved.</p>
-          <p>Crafted with precision and passion for backend excellence.</p>
+          <p>© 2026 Alayham Taha. All rights reserved.</p>
+          <div className="flex items-center gap-4">
+            <a
+              href="https://www.linkedin.com/in/alayham-taha-8bb369277/"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-muted-foreground hover:text-accent transition-colors"
+            >
+              <Linkedin size={18} />
+            </a>
+            <a
+              href="https://github.com/AlayhamTaha543"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-muted-foreground hover:text-accent transition-colors"
+            >
+              <Github size={18} />
+            </a>
+            <p>Crafted with precision and passion for backend excellence.</p>
+          </div>
         </div>
       </footer>
     </div>
