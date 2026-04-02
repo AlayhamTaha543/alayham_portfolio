@@ -1,19 +1,12 @@
 import express, { Request, Response } from "express";
-import path from "path";
-import { fileURLToPath } from "url";
-
-const __filename = fileURLToPath(import.meta.url);
-const __dirname = path.dirname(__filename);
 
 const app = express();
 
-// Serve static files from dist/public
-const staticPath = path.resolve(__dirname, "..", "dist", "public");
-app.use(express.static(staticPath));
-
-// Handle client-side routing - serve index.html for all routes
-app.get("*", (_req: Request, res: Response) => {
-  res.sendFile(path.join(staticPath, "index.html"));
+app.get("/api/health", (_req: Request, res: Response) => {
+  res.json({ status: "ok", timestamp: new Date().toISOString() });
 });
 
-export default app;
+// Export the handler for Vercel Serverless
+export default (req: Request, res: Response) => {
+  app(req, res);
+};
