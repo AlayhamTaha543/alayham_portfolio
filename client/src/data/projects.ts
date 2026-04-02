@@ -61,34 +61,19 @@ export const projects: Project[] = [
 ];
 
 export const getProjectById = (id: string): Project | undefined => {
-  try {
-    return projects.find(project => project.id === id);
-  } catch (error) {
-    console.error('Error finding project by id:', error);
-    return undefined;
-  }
+  return projects.find(project => project.id === id);
 };
 
 export const getFeaturedProjects = (limit: number = 3): Project[] => {
-  try {
-    return projects.slice(0, limit);
-  } catch (error) {
-    console.error('Error getting featured projects:', error);
-    return [];
-  }
+  return projects.slice(0, limit);
 };
 
 export const getProjectsByTag = (tag: string): Project[] => {
-  try {
-    return projects.filter(project => 
-      project.tags.some(projectTag => 
-        projectTag.toLowerCase() === tag.toLowerCase()
-      )
-    );
-  } catch (error) {
-    console.error('Error getting projects by tag:', error);
-    return [];
-  }
+  return projects.filter(project => 
+    project.tags.some(projectTag => 
+      projectTag.toLowerCase() === tag.toLowerCase()
+    )
+  );
 };
 
 // Security helper to validate URLs
@@ -114,10 +99,5 @@ export const certifications: Certification[] = [
 ];
 
 export const getCertificationById = (id: string): Certification | undefined => {
-  try {
-    return certifications.find(cert => cert.id === id);
-  } catch (error) {
-    console.error('Error finding certification by id:', error);
-    return undefined;
-  }
+  return certifications.find(cert => cert.id === id);
 };
