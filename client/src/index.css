@@ -16,79 +16,216 @@
   animation: shimmer 2s infinite;
 }
 
+/* Fade in animation for sections */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-fade-in {
+  animation: fadeIn 0.6s ease-out;
+}
+
+/* Float animation for decorative elements */
+@keyframes float {
+  0%, 100% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-20px);
+  }
+}
+
+.animate-float {
+  animation: float 6s ease-in-out infinite;
+}
+
+.animate-float-delay {
+  animation: float 6s ease-in-out 2s infinite;
+}
+
+.animate-float-slow {
+  animation: float 8s ease-in-out 1s infinite;
+}
+
+/* Pulse glow effect */
+@keyframes pulse-glow {
+  0%, 100% {
+    opacity: 0.4;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 0.8;
+    transform: scale(1.05);
+  }
+}
+
+.animate-pulse-glow {
+  animation: pulse-glow 4s ease-in-out infinite;
+}
+
+/* Slide in from left/right */
+@keyframes slideInLeft {
+  from {
+    opacity: 0;
+    transform: translateX(-30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes slideInRight {
+  from {
+    opacity: 0;
+    transform: translateX(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+.animate-slide-in-left {
+  animation: slideInLeft 0.6s ease-out;
+}
+
+.animate-slide-in-right {
+  animation: slideInRight 0.6s ease-out;
+}
+
+/* Scale in animation */
+@keyframes scaleIn {
+  from {
+    opacity: 0;
+    transform: scale(0.9);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+.animate-scale-in {
+  animation: scaleIn 0.5s ease-out;
+}
+
+/* Gradient shift animation */
+@keyframes gradient-shift {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+.animate-gradient {
+  background-size: 200% 200%;
+  animation: gradient-shift 3s ease infinite;
+}
+
+/* Smooth scroll behavior */
+html {
+  scroll-behavior: smooth;
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  width: 10px;
+}
+
+::-webkit-scrollbar-track {
+  background: hsl(var(--background));
+}
+
+::-webkit-scrollbar-thumb {
+  background: hsl(var(--muted));
+  border-radius: 5px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: hsl(var(--accent) / 0.5);
+}
+
 @layer base {
   :root {
-    /* Modern Technical Minimalism Design System */
-    /* Deep Slate Base with Electric Cyan Accents */
-    --primary: 188 100% 50%; /* Electric Cyan */
-    --primary-foreground: 215 32% 9%; /* Deep Slate */
-    --sidebar-primary: 188 100% 50%;
-    --sidebar-primary-foreground: 215 32% 9%;
-    --chart-1: 188 100% 50%;
-    --chart-2: 188 100% 43%;
-    --chart-3: 188 100% 33%;
-    --chart-4: 188 100% 23%;
-    --chart-5: 188 100% 17%;
-    --radius: 0.5rem;
-    --background: 215 32% 9%; /* Deep Slate */
-    --foreground: 210 9% 91%; /* Light Gray */
-    --card: 215 25% 16%; /* Slightly Lighter Slate */
-    --card-foreground: 210 9% 91%;
-    --popover: 215 25% 16%;
-    --popover-foreground: 210 9% 91%;
-    --secondary: 215 25% 16%;
-    --secondary-foreground: 188 100% 50%;
-    --muted: 215 20% 25%; /* Medium Slate */
-    --muted-foreground: 210 7% 66%;
-    --accent: 188 100% 50%; /* Electric Cyan */
-    --accent-foreground: 215 32% 9%;
+    /* Light theme - Clean white with cyan accents */
+    --background: 210 40% 98%; /* Very light blue-white */
+    --foreground: 215 32% 15%; /* Dark slate for text */
+    --card: 0 0% 100%; /* Pure white cards */
+    --card-foreground: 215 32% 15%;
+    --popover: 0 0% 100%;
+    --popover-foreground: 215 32% 15%;
+    --primary: 188 100% 45%; /* Electric Cyan - slightly darker for light bg */
+    --primary-foreground: 0 0% 100%; /* White text on primary */
+    --secondary: 215 20% 92%; /* Light gray secondary */
+    --secondary-foreground: 215 32% 15%;
+    --muted: 215 15% 90%; /* Light muted */
+    --muted-foreground: 215 10% 50%;
+    --accent: 188 100% 45%; /* Electric Cyan */
+    --accent-foreground: 0 0% 100%; /* White text on accent */
     --destructive: 0 84% 60%;
     --destructive-foreground: 0 0% 98%;
-    --border: 215 20% 25%;
-    --input: 215 25% 16%;
-    --ring: 188 100% 50%;
-    --sidebar: 215 32% 9%;
-    --sidebar-foreground: 210 9% 91%;
-    --sidebar-accent: 188 100% 50%;
-    --sidebar-accent-foreground: 215 32% 9%;
-    --sidebar-border: 215 20% 25%;
-    --sidebar-ring: 188 100% 50%;
+    --border: 215 15% 88%; /* Light borders */
+    --input: 215 15% 95%;
+    --ring: 188 100% 45%;
+    --radius: 0.5rem;
+    --sidebar: 210 40% 98%;
+    --sidebar-foreground: 215 32% 15%;
+    --sidebar-accent: 188 100% 45%;
+    --sidebar-accent-foreground: 0 0% 100%;
+    --sidebar-border: 215 15% 88%;
+    --sidebar-ring: 188 100% 45%;
+    --chart-1: 188 100% 45%;
+    --chart-2: 188 100% 38%;
+    --chart-3: 188 100% 31%;
+    --chart-4: 188 100% 24%;
+    --chart-5: 188 100% 17%;
   }
 
   .dark {
-    /* Dark theme uses same values as light (already dark) */
-    --primary: 188 100% 50%;
-    --primary-foreground: 215 32% 9%;
-    --sidebar-primary: 188 100% 50%;
-    --sidebar-primary-foreground: 215 32% 9%;
-    --background: 215 32% 9%;
-    --foreground: 210 9% 91%;
-    --card: 215 25% 16%;
+    /* Dark theme - Deep slate with electric cyan */
+    --background: 215 32% 9%; /* Deep slate */
+    --foreground: 210 9% 91%; /* Light gray */
+    --card: 215 25% 14%; /* Slightly lighter slate */
     --card-foreground: 210 9% 91%;
-    --popover: 215 25% 16%;
+    --popover: 215 25% 14%;
     --popover-foreground: 210 9% 91%;
+    --primary: 188 100% 50%; /* Electric cyan - brighter for dark bg */
+    --primary-foreground: 215 32% 9%; /* Dark text on primary */
     --secondary: 215 25% 16%;
     --secondary-foreground: 188 100% 50%;
-    --muted: 215 20% 25%;
+    --muted: 215 20% 25%; /* Medium slate */
     --muted-foreground: 210 7% 66%;
-    --accent: 188 100% 50%;
+    --accent: 188 100% 50%; /* Electric cyan */
     --accent-foreground: 215 32% 9%;
     --destructive: 0 84% 60%;
     --destructive-foreground: 0 0% 98%;
     --border: 215 20% 25%;
     --input: 215 25% 16%;
     --ring: 188 100% 50%;
-    --chart-1: 188 100% 50%;
-    --chart-2: 188 100% 43%;
-    --chart-3: 188 100% 33%;
-    --chart-4: 188 100% 23%;
-    --chart-5: 188 100% 17%;
     --sidebar: 215 32% 9%;
     --sidebar-foreground: 210 9% 91%;
     --sidebar-accent: 188 100% 50%;
     --sidebar-accent-foreground: 215 32% 9%;
     --sidebar-border: 215 20% 25%;
     --sidebar-ring: 188 100% 50%;
+    --chart-1: 188 100% 50%;
+    --chart-2: 188 100% 43%;
+    --chart-3: 188 100% 33%;
+    --chart-4: 188 100% 23%;
+    --chart-5: 188 100% 17%;
   }
 
   * {
