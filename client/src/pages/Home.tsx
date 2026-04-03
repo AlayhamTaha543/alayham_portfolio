@@ -26,7 +26,7 @@ export default function Home() {
   const { scrollY } = useScroll();
   const y1 = useTransform(scrollY, [0, 500], [0, -100]);
   const y2 = useTransform(scrollY, [0, 500], [0, -50]);
-  const opacity = useTransform(scrollY, [0, 300], [1, 0]);
+  const opacity = useTransform(scrollY, [0, 600], [1, 0]);
 
   return (
     <div className="min-h-screen bg-background text-foreground overflow-x-hidden">

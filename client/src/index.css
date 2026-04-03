@@ -1,6 +1,29 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+@import "tailwindcss";
+
+@theme {
+  --color-background: hsl(0 0% 100%);
+  --color-foreground: hsl(222 47% 11%);
+  --color-card: hsl(0 0% 100%);
+  --color-card-foreground: hsl(222 47% 11%);
+  --color-popover: hsl(0 0% 100%);
+  --color-popover-foreground: hsl(222 47% 11%);
+  --color-primary: hsl(188 100% 45%);
+  --color-primary-foreground: hsl(0 0% 100%);
+  --color-secondary: hsl(210 40% 96%);
+  --color-secondary-foreground: hsl(222 47% 11%);
+  --color-muted: hsl(210 40% 96%);
+  --color-muted-foreground: hsl(215 16% 47%);
+  --color-accent: hsl(188 100% 45%);
+  --color-accent-foreground: hsl(0 0% 100%);
+  --color-destructive: hsl(0 84% 60%);
+  --color-destructive-foreground: hsl(0 0% 98%);
+  --color-border: hsl(214 32% 91%);
+  --color-input: hsl(214 32% 91%);
+  --color-ring: hsl(188 100% 45%);
+  --radius: 0.5rem;
+  --font-sans: 'Sora', sans-serif;
+  --font-mono: 'Fira Code', monospace;
+}
 
 /* Shimmer animation for skeleton screens */
 @keyframes shimmer {
@@ -160,81 +183,39 @@ html {
 
 @layer base {
   :root {
-    /* Light theme - Clean white with cyan accents */
-    --background: 210 40% 98%; /* Very light blue-white */
-    --foreground: 215 32% 15%; /* Dark slate for text */
-    --card: 0 0% 100%; /* Pure white cards */
-    --card-foreground: 215 32% 15%;
-    --popover: 0 0% 100%;
-    --popover-foreground: 215 32% 15%;
-    --primary: 188 100% 45%; /* Electric Cyan - slightly darker for light bg */
-    --primary-foreground: 0 0% 100%; /* White text on primary */
-    --secondary: 215 20% 92%; /* Light gray secondary */
-    --secondary-foreground: 215 32% 15%;
-    --muted: 215 15% 90%; /* Light muted */
-    --muted-foreground: 215 10% 50%;
-    --accent: 188 100% 45%; /* Electric Cyan */
-    --accent-foreground: 0 0% 100%; /* White text on accent */
-    --destructive: 0 84% 60%;
-    --destructive-foreground: 0 0% 98%;
-    --border: 215 15% 88%; /* Light borders */
-    --input: 215 15% 95%;
-    --ring: 188 100% 45%;
-    --radius: 0.5rem;
-    --sidebar: 210 40% 98%;
-    --sidebar-foreground: 215 32% 15%;
-    --sidebar-accent: 188 100% 45%;
-    --sidebar-accent-foreground: 0 0% 100%;
-    --sidebar-border: 215 15% 88%;
-    --sidebar-ring: 188 100% 45%;
-    --chart-1: 188 100% 45%;
-    --chart-2: 188 100% 38%;
-    --chart-3: 188 100% 31%;
-    --chart-4: 188 100% 24%;
-    --chart-5: 188 100% 17%;
+    --theme-bg: var(--color-background);
+    --theme-fg: var(--color-foreground);
   }
 
   .dark {
-    /* Dark theme - Deep slate with electric cyan */
-    --background: 215 32% 9%; /* Deep slate */
-    --foreground: 210 9% 91%; /* Light gray */
-    --card: 215 25% 14%; /* Slightly lighter slate */
-    --card-foreground: 210 9% 91%;
-    --popover: 215 25% 14%;
-    --popover-foreground: 210 9% 91%;
-    --primary: 188 100% 50%; /* Electric cyan - brighter for dark bg */
-    --primary-foreground: 215 32% 9%; /* Dark text on primary */
-    --secondary: 215 25% 16%;
-    --secondary-foreground: 188 100% 50%;
-    --muted: 215 20% 25%; /* Medium slate */
-    --muted-foreground: 210 7% 66%;
-    --accent: 188 100% 50%; /* Electric cyan */
-    --accent-foreground: 215 32% 9%;
-    --destructive: 0 84% 60%;
-    --destructive-foreground: 0 0% 98%;
-    --border: 215 20% 25%;
-    --input: 215 25% 16%;
-    --ring: 188 100% 50%;
-    --sidebar: 215 32% 9%;
-    --sidebar-foreground: 210 9% 91%;
-    --sidebar-accent: 188 100% 50%;
-    --sidebar-accent-foreground: 215 32% 9%;
-    --sidebar-border: 215 20% 25%;
-    --sidebar-ring: 188 100% 50%;
-    --chart-1: 188 100% 50%;
-    --chart-2: 188 100% 43%;
-    --chart-3: 188 100% 33%;
-    --chart-4: 188 100% 23%;
-    --chart-5: 188 100% 17%;
+    --color-background: hsl(215 32% 9%);
+    --color-foreground: hsl(210 9% 91%);
+    --color-card: hsl(215 25% 14%);
+    --color-card-foreground: hsl(210 9% 91%);
+    --color-popover: hsl(215 25% 14%);
+    --color-popover-foreground: hsl(210 9% 91%);
+    --color-primary: hsl(188 100% 50%);
+    --color-primary-foreground: hsl(215 32% 9%);
+    --color-secondary: hsl(215 25% 16%);
+    --color-secondary-foreground: hsl(188 100% 50%);
+    --color-muted: hsl(215 20% 25%);
+    --color-muted-foreground: hsl(210 7% 66%);
+    --color-accent: hsl(188 100% 50%);
+    --color-accent-foreground: hsl(215 32% 9%);
+    --color-destructive: hsl(0 84% 60%);
+    --color-destructive-foreground: hsl(0 0% 98%);
+    --color-border: hsl(215 20% 25%);
+    --color-input: hsl(215 25% 16%);
+    --color-ring: hsl(188 100% 50%);
   }
 
   * {
-    @apply border-border outline-ring/50;
+    @apply border-border;
   }
 
   body {
     @apply bg-background text-foreground;
-    font-family: 'Sora', sans-serif;
+    font-family: var(--font-sans);
   }
 
   /* Reset link default styles */
@@ -248,7 +229,7 @@ html {
   }
 
   h1, h2, h3, h4, h5, h6 {
-    font-family: 'Sora', sans-serif;
+    font-family: var(--font-sans);
     font-weight: 700;
     letter-spacing: -0.02em;
   }
@@ -266,11 +247,11 @@ html {
   }
 
   code, pre {
-    font-family: 'Fira Code', monospace;
+    font-family: var(--font-mono);
   }
 
   p {
-    font-family: 'Sora', sans-serif;
+    font-family: var(--font-sans);
     @apply text-base leading-relaxed;
   }
 
@@ -287,7 +268,7 @@ html {
   }
 
   button, [role="button"] {
-    font-family: 'Sora', sans-serif;
+    font-family: var(--font-sans);
     font-weight: 600;
     transition: all 0.2s ease-out;
   }
