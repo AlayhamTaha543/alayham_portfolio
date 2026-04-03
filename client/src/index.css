@@ -231,39 +231,49 @@ html {
   * {
     @apply border-border outline-ring/50;
   }
-  
+
   body {
     @apply bg-background text-foreground;
     font-family: 'Sora', sans-serif;
   }
-  
+
+  /* Reset link default styles */
+  a {
+    color: inherit;
+    text-decoration: none;
+  }
+
+  a:hover {
+    text-decoration: none;
+  }
+
   h1, h2, h3, h4, h5, h6 {
     font-family: 'Sora', sans-serif;
     font-weight: 700;
     letter-spacing: -0.02em;
   }
-  
+
   h1 {
     @apply text-5xl;
   }
-  
+
   h2 {
     @apply text-4xl;
   }
-  
+
   h3 {
     @apply text-2xl;
   }
-  
+
   code, pre {
     font-family: 'Fira Code', monospace;
   }
-  
+
   p {
     font-family: 'Sora', sans-serif;
     @apply text-base leading-relaxed;
   }
-  
+
   button:not(:disabled),
   [role="button"]:not([aria-disabled="true"]),
   [type="button"]:not(:disabled),
@@ -275,7 +285,7 @@ html {
   input[type="radio"]:not(:disabled) {
     @apply cursor-pointer;
   }
-  
+
   button, [role="button"] {
     font-family: 'Sora', sans-serif;
     font-weight: 600;
