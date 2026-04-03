@@ -15,7 +15,10 @@
       "Bash(pkill *)",
       "Bash(sleep *)",
       "Bash(rm *)",
-      "Bash(mkdir *)"
+      "Bash(mkdir *)",
+      "Bash(npm ls *)",
+      "Bash(eslint *)",
+      "Bash(npm *)"
     ]
   },
   "$version": 3

@@ -136,8 +136,9 @@ export default function HeroSection() {
               whileHover={{ scale: 1.05, y: -2 }}
               whileTap={{ scale: 0.95 }}
               className="inline-flex items-center gap-2 px-4 py-2 bg-accent/10 hover:bg-accent/20 border border-accent/30 rounded-lg text-accent font-medium transition-all duration-300"
+              aria-label="Visit LinkedIn profile (opens in new tab)"
             >
-              <Linkedin size={18} />
+              <Linkedin size={18} aria-hidden="true" />
               LinkedIn
             </motion.a>
             <motion.a
@@ -147,8 +148,9 @@ export default function HeroSection() {
               whileHover={{ scale: 1.05, y: -2 }}
               whileTap={{ scale: 0.95 }}
               className="inline-flex items-center gap-2 px-4 py-2 bg-accent/10 hover:bg-accent/20 border border-accent/30 rounded-lg text-accent font-medium transition-all duration-300"
+              aria-label="Visit GitHub profile (opens in new tab)"
             >
-              <Github size={18} />
+              <Github size={18} aria-hidden="true" />
               GitHub
             </motion.a>
           </motion.div>
